@@ -1,0 +1,33 @@
+                go基础
+(a)未说明main包
+使用“fmt.Println"之前未导入“fmt"包
+fmt.Println后括号里面要加“”
+（b)在输出3之前并未申明变量
+              数据库相关
+（a)创建图书信息表
+create table books(
+   book_id int primary key auto_increment,  -- 书籍序号
+	 book_name varchar(50) not null,  -- 书名
+	 book_author varchar(20) not null, -- 作者名
+     book_press varchar(20) not null, -- 出版社
+	 book_price decimal(10,2) not null, -- 书籍价格
+	 book_stock int not null, -- 书籍库存
+	 book_desc varchar(200)  -- 书籍简介
+);
+           借阅记录
+     CREATE TABLE records(
+  rid INT AUTO_INCREMENT COMMENT '借书记录id',
+  snum CHAR(8) NOT NULL COMMENT '学生id',
+  bid INT NOT NULL COMMENT '图书id',
+  borrwo_num INT NOT NULL COMMENT '借书的数量',
+  is_return INT NOT NULL COMMENT '0表示未归还，1表示已经归还',
+  borrow_date DATE NOT NULL COMMENT '借书时间',
+  CONSTRAINT FK_RECORDS_STUDENTS FOREIGN KEY(snum) REFERENCES students(stu_num),
+  CONSTRAINT FK_RECORDS_BOOKS FOREIGN KEY(bid) REFERENCES books(book_id),
+  PRIMARY KEY (rid)
+); 
+（b）mysql只需要解析一次查询，这节约了解析和其他的开销预处理语句对
+ 安全性也有好处，它不需要在应用程序中对值进行转义和加引号，这更加方便，并且减少了
+ 遭SQL 注入攻击的可能性。
+
+              
